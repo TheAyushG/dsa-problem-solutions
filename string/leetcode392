@@ -1,0 +1,21 @@
+//leetcode 392, approch two pointers
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        
+        int n = s.size();
+        int m = t.size();
+        
+        int start_s = 0;
+        int start_t = 0;
+        
+        while(start_s < n && start_t < m){
+           if(s[start_s] == t[start_t]){
+               start_s++;
+            }
+           start_t++;
+        }
+    return start_s == n;
+    }
+};
