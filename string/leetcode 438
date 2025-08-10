@@ -34,3 +34,49 @@ public:
         return result;
     }
 };
+
+
+
+//using unordered hash map
+
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        vector<int> result;
+        if (s.size() < p.size()) return result;
+
+        unordered_map<char, int> mapP, mapWin;
+        int k = p.size();
+
+        for (char c : p) {
+            mapP[c]++;
+        }
+
+        for (int i = 0; i < k; i++) {
+            mapWin[s[i]]++;
+        }
+
+        if (mapWin == mapP) {
+            result.push_back(0);
+        }
+
+        
+        for (int i = k; i < s.size(); i++) {
+            char newChar = s[i];
+            char oldChar = s[i - k];
+
+            mapWin[newChar]++;
+
+            mapWin[oldChar]--;
+            if (mapWin[oldChar] == 0) {
+                mapWin.erase(oldChar); 
+            }
+
+            if (mapWin == mapP) {
+                result.push_back(i - k + 1);
+            }
+        }
+
+        return result;
+    }
+};
