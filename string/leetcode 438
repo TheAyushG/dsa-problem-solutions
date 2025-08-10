@@ -3,6 +3,7 @@
 //Method Name: Sliding Window with Frequency Count
 //Time Complexity: O(n)
 //Space Complexity: O(1)
+// frequency array is used to solve this question
 
 class Solution {
 public:
