@@ -1,0 +1,29 @@
+// LeetCode 459: Repeated Substring Pattern
+// Time: O(n²)
+// Space: O(n)
+// String Matching
+
+
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+
+            int n = s.size();
+            for(int length = n/2; length >= 1; length--){
+                if(n%length == 0){
+                  int times = n/length;
+
+                  string pattern = s.substr(0, length);
+                  string newstr = "";
+
+                  while(times--){
+                    newstr += pattern;
+                  }
+                  if(newstr == s){
+                    return true;
+                  }
+                }
+            }
+        return false;
+    }
+};
