@@ -56,3 +56,32 @@ public:
         return dummy->next;
     }
 };
+
+
+//approch 3 using a extra space 
+time O(n)
+space O(n)
+
+
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        
+        ListNode* newHead = new ListNode(0); 
+        ListNode* tail = newHead; // pointer to last node in new list
+        
+        ListNode* curr = head;
+        while (curr != NULL) {
+            if (curr->val != val) {
+                
+                tail->next = new ListNode(curr->val);
+                tail = tail->next; // move tail to new last node
+            }
+            curr = curr->next;
+        }
+        
+        ListNode* result = newHead->next;
+        delete newHead; // delete dummy node
+        return result;
+    }
+};
