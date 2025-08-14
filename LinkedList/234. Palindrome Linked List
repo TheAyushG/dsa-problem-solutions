@@ -1,0 +1,87 @@
+234. Palindrome Linked List
+
+
+//space complexity O(N)
+//time complexity O(1)
+
+// class Solution {
+// public:
+
+//     ListNode* reverse(ListNode* head){
+//         ListNode* prev = NULL;
+//         ListNode* curr = head;
+
+//         while(curr != NULL){
+//            ListNode* next = curr->next;
+//             curr->next = prev;
+//             prev = curr;
+//             curr = next;
+
+//         }
+//         return prev;
+//     }
+
+//     bool isPalindrome(ListNode* head) {
+        
+//         if(head == NULL || head->next == NULL){
+//             return true;
+//         }
+
+//         ListNode* slow = head;
+//         ListNode* fast = head;
+
+//         while(fast->next != NULL && fast->next->next != NULL){
+//            slow = slow->next;
+//            fast = fast->next->next;   
+//         }
+
+//         slow->next = reverse(slow->next);
+
+//         ListNode* first = head;
+//         ListNode* second = slow->next;
+
+//         while(second != NULL){
+//             if(first->val != second->val){
+//                 return false;
+               
+//             }
+//             first = first->next;
+//                second = second->next;
+//         }
+
+//        return true;
+//     }
+// };
+
+
+
+
+
+
+time complexity O(n)
+space complexity O(n)
+
+class Solution {
+public:
+
+    bool isPalindrome(ListNode* head){
+        stack<int> stack;
+
+        ListNode* curr = head;
+
+        while(curr){
+            stack.push(curr->val);
+            curr = curr->next;
+        }
+
+        curr = head;
+        while(curr && curr->val == stack.top()){
+           stack.pop();
+           curr = curr->next;
+        }
+
+        return curr == NULL;
+ 
+    }
+};
+
