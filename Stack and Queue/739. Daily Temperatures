@@ -1,0 +1,51 @@
+739. Daily Temperatures
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temp) {
+        
+        int n = temp.size();
+        vector<int> res(n,0);
+        stack<int>st;
+        
+        for(int i=n-1; i >= 0; i--){
+
+            while(!st.empty() && temp[st.top()] <= temp[i]){
+                st.pop();
+            }
+
+            if(!st.empty()){
+                res[i] = st.top() - i;
+            }
+
+            st.push(i);
+        }
+    return res;
+    }
+};
+
+
+
+
+//same approach just iterate from front
+
+// class Solution {
+// public:
+//     vector<int> dailyTemperatures(std::vector<int>& temps) {
+//         vector<int> results(temps.size());
+//         stack<int> stack;
+//         
+//         for (int i = 0; i < temps.size(); i++) {
+//             while (!stack.empty() && temps[stack.top()] < temps[i]) {
+//                 results[stack.top()] = i - stack.top();
+//                 stack.pop();
+//             }
+//             stack.push(i);
+//         }
+
+//         return results;
+//     }
+// };
