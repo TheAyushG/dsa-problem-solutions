@@ -1,0 +1,27 @@
+
+//leetcode 933. Number of Recent Calls
+
+class RecentCounter {
+public:
+
+    vector<int> list;
+    int i;
+    int j;
+
+    RecentCounter() {
+        i = 0;
+        j = -1;
+    }
+    
+    int ping(int t) {
+        list.push_back(t);
+        j++;
+
+        while(i < j && list[j] - 3000 > list[i]){
+            i++;
+        }
+
+
+       return j - i + 1;
+    }
+};
