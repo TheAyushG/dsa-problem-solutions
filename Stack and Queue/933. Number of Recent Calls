@@ -1,5 +1,29 @@
-
 //leetcode 933. Number of Recent Calls
+
+//using queue
+class RecentCounter {
+public:
+
+    queue<int> q;
+
+    RecentCounter() {
+        
+    }
+    
+    int ping(int t) {
+        q.push(t);
+
+        while(!q.empty() && t - 3000 > q.front()){
+            q.pop();
+        }
+
+
+       return q.size();
+    }
+};
+
+
+//sliding window, without queue
 
 class RecentCounter {
 public:
