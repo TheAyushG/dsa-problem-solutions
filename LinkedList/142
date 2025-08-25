@@ -1,0 +1,59 @@
+142. Linked List Cycle II
+O(1) — constant space.
+Total: O(n) — linear time.
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+
+    if(head == NULL || head->next == NULL)
+    return NULL;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+
+    while(fast != NULL && fast->next != NULL){
+       slow = slow->next;
+       fast = fast->next->next;
+
+       if(slow == fast)
+       break;
+    }
+
+    if(slow != fast)
+      return NULL;
+
+    ListNode* p = head;
+
+    while(p != slow){
+    p = p->next;
+    slow = slow->next;
+    }
+    
+    return slow;
+    }
+};
+
+
+// class Solution {
+// public:
+//     ListNode *detectCycle(ListNode *head) {
+
+
+//         unordered_set<ListNode*> visited;
+
+//         ListNode* curr = head;
+
+//         while(curr != NULL){
+//             if(visited.find(curr) != visited.end()){
+//                 return curr;
+//             }
+
+//             visited.insert(curr); //mark as a visited
+//             curr = curr->next;
+//         }
+
+//         return NULL;
+      
+//     }
+// };

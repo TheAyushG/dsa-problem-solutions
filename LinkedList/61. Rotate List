@@ -1,0 +1,103 @@
+//61. Rotate List
+//That’s O(n) total, not nested traversals.
+//Space complexity: O(1)
+
+class Solution {
+public:
+
+        int length(ListNode* head){
+           int n  = 0;
+
+           while(head != NULL){
+               n++;
+               head = head->next;
+           }
+           return n;
+        }
+
+        ListNode* rotateRight(ListNode* head, int k) {
+        
+        if(head == NULL)
+        return head;
+
+        int n = length(head);
+        int loop = k % n;
+        loop = n - loop;
+
+          if(n == 1 || n == loop)
+          return head;
+
+          int j = 0;
+          ListNode* temp = head;
+          ListNode* firstAddress = head;
+
+          while(temp != NULL){
+            j++;
+            if(j == loop){
+                firstAddress = temp->next;
+                temp->next = NULL;
+                break;
+            }
+            temp = temp->next;
+          }
+
+        temp  = firstAddress;
+        while(temp->next != NULL){
+            temp = temp->next;
+        }
+
+        temp->next = head;
+        return firstAddress;
+    }
+};
+
+
+
+
+**second apprch**
+That’s n traversals × O(n) each = O(n²).
+Space complexity: O(1).
+
+
+// class Solution {
+// public:
+    
+//         int length(ListNode* head){
+//            int length  = 0;
+
+//            while(head){
+//                length++;
+//                head = head->next;
+//            }
+//            return length;
+//         }
+
+
+//         ListNode* rotateRight(ListNode* head, int k) {
+        
+//         if(head == NULL || head->next == NULL || k == 0){
+//             return head;
+//         }
+
+//         int len = length(head);
+//         int swaps = k % len;
+
+        
+//         while(swaps--){
+//             ListNode* curr = head;
+//             ListNode* prev = NULL;
+
+//             while(curr->next){
+               
+//               prev = curr;
+//               curr = curr->next;
+//             }
+
+//             curr->next = head;
+//             prev->next = NULL;
+//             head = curr;
+            
+//         }
+//         return head;
+//     }
+// };

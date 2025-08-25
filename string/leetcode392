@@ -1,0 +1,60 @@
+//leetcode 392, approch two pointers
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        
+        int n = s.size();
+        int m = t.size();
+        
+        int start_s = 0;
+        int start_t = 0;
+        
+        while(start_s < n && start_t < m){
+           if(s[start_s] == t[start_t]){
+               start_s++;
+            }
+           start_t++;
+        }
+    return start_s == n;
+    }
+};
+
+
+
+//** 2nd approch using Binary Search with Preprocessing **//
+
+The method you’re using here is called the "Binary Search with Preprocessing" approach for the Is Subsequence problem.
+More specifically:
+You preprocess t by storing the positions of each character in a map<char, vector<int>>.
+Then, for each character in s, you use binary search (upper_bound) to quickly find its next occurrence in t after the previous matched index.
+In algorithm terms, this is:
+Preprocessing + Binary Search
+Sometimes also described as "Index mapping + Binary Search" method.
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        
+        int m = s.size();
+        int n = t.size();
+        map<char, vector<int>>map;
+        for(int i=0; i<n; i++){
+            map[t[i]].push_back(i);
+        }
+        int prev = -1;
+        for(int i=0; i<m; i++){
+            char ch = s[i];
+
+            if(map.find(ch) == map.end())
+            return false;
+            vector<int>indices = map[ch];
+
+            auto it = upper_bound(begin(indices), end(indices), prev);
+            if(it == indices.end())
+            return false;
+            prev = *it;
+        }
+    return true; 
+    }
+};
+
