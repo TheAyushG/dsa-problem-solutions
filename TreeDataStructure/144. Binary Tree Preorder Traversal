@@ -1,0 +1,119 @@
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+    
+    vector<int>ans;
+        while(root){
+            if(!root->left){
+                ans.push_back(root->val);
+                root = root->right;
+            }
+            
+            else{
+                TreeNode *curr = root->left;
+                
+                while(curr->right && curr->right != root){
+                    curr = curr->right;
+                }
+                
+                //not trverse left subtree
+                if(curr->right == NULL){
+                    ans.push_back(root->val);
+                    curr->right = root;
+                    root = root->left;
+                }
+                
+                //left subtree already treverse
+                else{
+                    curr->right = NULL;
+                    root = root->right;
+                }
+            }
+        }
+        return ans;
+
+    }
+};
+
+
+
+
+
+
+//using morris trversal
+// class Solution {
+// public:
+//     vector<int> preorderTraversal(TreeNode* root) {
+    
+//     vector<int> res;
+//     TreeNode* curr = root;
+//     while (curr != NULL) {
+//         if (curr->left == NULL) {
+//             res.push_back(curr->val);
+//             curr = curr->right;
+//         } else {
+//             TreeNode* pred = curr->left;
+//             while (pred->right != NULL && pred->right != curr) {
+//                 pred = pred->right;
+//             }
+//             if (pred->right == NULL) {
+//                 res.push_back(curr->val);   // process curr first (preorder)
+//                 pred->right = curr;         // thread
+//                 curr = curr->left;          // move left
+//             } else {
+//                 pred->right = NULL;         // remove thread
+//                 curr = curr->right;         // move right
+//             }
+//         }
+//     }
+//     return res;
+
+//     }
+// };
+
+
+//using stack
+
+// class Solution {
+// public:
+//     vector<int> preorderTraversal(TreeNode* root) {
+//     vector<int> res;
+//     if(!root) return res;
+
+//     stack<TreeNode*> st;
+//     st.push(root);
+
+//     while(!st.empty()){
+//         TreeNode* curr = st.top(); st.pop();
+//         res.push_back(curr->val);
+
+//         if(curr->right) st.push(curr->right);
+//         if(curr->left) st.push(curr->left);
+//     }
+//        return res;
+//     }
+// };
+
+
+
+//recursion method
+
+// class Solution {
+// public:
+//     vector<int> preorderTraversal(TreeNode* root) {
+        
+//         vector<int> res;
+//         helper(res, root);
+//         return res;
+//     }
+
+//     void helper(vector<int>& res, TreeNode* root){
+//         if(root == NULL){
+//             return;
+//         }
+
+//     res.push_back(root->val);
+//     helper(res, root->left);
+//     helper(res, root->right);
+//     }
+// };
