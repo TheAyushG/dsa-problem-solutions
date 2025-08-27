@@ -1,0 +1,70 @@
+//using two stack
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+     
+     vector<int>ans;
+     if(!root) return ans;
+
+     stack<TreeNode*> s1,s2;
+     s1.push(root);
+
+     while(!s1.empty()){
+        TreeNode* node = s1.top();
+        s1.pop();
+        s2.push(node);
+        if(node->left) s1.push(node->left);
+        if(node->right) s1.push(node->right);
+     }
+
+     while(!s2.empty()){
+        ans.push_back(s2.top()->val);
+        s2.pop();
+     }
+    
+    return ans;
+    }
+};
+
+
+
+
+//morris trversa
+// class Solution {
+// public:
+//     vector<int> postorderTraversal(TreeNode* root) {
+        
+//         vector<int>ans;
+//         while(root){
+//             // left part doesn't exist
+//             if(!root->right){
+//                 ans.push_back(root->val);
+//                 root=root->left;
+//             }
+            
+//             // left part exist
+//             else{
+//                 TreeNode* curr=root->right;
+                
+//                 while(curr->left && curr->left!=root)
+//                 curr=curr->left;
+                
+//                 // left subtree not traverse
+//                 if(curr->left==NULL){
+//                     ans.push_back(root->val);
+//                     curr->left=root;
+//                     root=root->right;
+//                 }
+                
+//                 // already exist
+//                 else{
+//                     curr->left=NULL;
+//                     root=root->left;
+//                 }
+//             }
+//         }
+//          reverse(ans.begin(),ans.end());
+//          return ans;
+
+//     }
+// };
