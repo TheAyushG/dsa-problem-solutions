@@ -1,0 +1,48 @@
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        // Base case: if tree is empty
+        if(root == NULL) return 0;
+
+        // Recursive calls for left and right subtree
+        int leftDepth = maxDepth(root->left);
+        int rightDepth = maxDepth(root->right);
+
+        // Return the maximum depth + 1 for current node
+        return 1 + max(leftDepth, rightDepth);
+    }
+};
+
+
+
+// class Solution {
+// public:
+//     int maxDepth(TreeNode* root) {
+    
+//     if(root == NULL)
+//     return 0;
+
+//     queue<TreeNode*> q;
+//     q.push(root);
+//     int depth = 0;
+
+//     while(!q.empty()){
+//         int n = q.size();
+//         depth++;
+
+//         for(int i=0; i<n; i++){
+//            TreeNode* node = q.front();
+//            q.pop();
+
+//            if(node->left)
+//            q.push(node->left);
+           
+
+//            if(node->right)
+//            q.push(node->right);
+           
+//         }
+//     }
+//       return depth;
+//     }
+// };
