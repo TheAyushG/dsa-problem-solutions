@@ -1,0 +1,26 @@
+//110. Balanced Binary Tree
+
+class Solution {
+public:
+int height(TreeNode* root){
+    if(root == NULL) return 0;
+    else {
+        return max(height(root->left), height(root->right)) + 1;
+    }
+}
+void inorderedUtill(TreeNode* root, bool &ans){
+    if(root != NULL){
+        inorderedUtill(root->left, ans);
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        if(abs(leftHeight - rightHeight) > 1)
+            ans = ans && false;
+        inorderedUtill(root->right, ans);
+    }
+}
+bool isBalanced(TreeNode* root){
+bool ans = true;
+inorderedUtill(root, ans);
+return ans;
+}
+};
