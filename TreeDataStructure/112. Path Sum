@@ -1,0 +1,48 @@
+//112. Path Sum
+
+class Solution {
+public:
+    
+    bool solve (TreeNode* root,int currentSum, int& targetSum){
+        if(root == NULL){
+            return 0;
+        }
+
+        currentSum += root->val;
+
+        if(root->left == NULL && root->right == NULL){
+            return currentSum == targetSum;
+        }
+
+        bool leftSide = solve(root->left, currentSum ,targetSum);
+        bool rightSide = solve(root->right, currentSum, targetSum);
+
+        return leftSide || rightSide;
+    }
+    
+    
+    bool hasPathSum(TreeNode* root, int targetSum) {
+    int currentSum = 0;
+    bool result = solve(root, currentSum, targetSum);
+    return result;
+    }
+};
+
+
+// class Solution {
+// public:
+//     bool hasPathSum(TreeNode* root, int targetSum) {
+
+//         if(root == NULL)
+//         return false;
+
+//         if(root->left == NULL && root->right == NULL){
+//             return targetSum == root->val;
+//         }
+        
+//         int remaining = targetSum - root->val;
+
+//         return hasPathSum(root->left, remaining) || hasPathSum(root->right, remaining);
+        
+//     }
+// };
