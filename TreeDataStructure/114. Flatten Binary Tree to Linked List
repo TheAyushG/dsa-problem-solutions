@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void solve(TreeNode* root, vector<int>& store){
+       
+       if(root == NULL)
+       return;
+
+       store.push_back(root->val);
+       solve(root->left, store);
+       solve(root->right, store);
+
+
+    }
+
+    void flatten(TreeNode* root) {
+
+    if(root == NULL)
+    return;
+
+    vector<int> store;
+    solve(root, store);
+
+    TreeNode* curr = root;
+    curr->val = store[0];
+
+    for(int i=1; i<store.size(); i++){
+       curr->left  = NULL;
+       curr->right = new TreeNode(store[i]);
+       curr = curr->right;
+       }
+    }
+};
