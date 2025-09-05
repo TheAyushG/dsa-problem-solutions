@@ -1,3 +1,32 @@
+//114. Flatten Binary Tree to Linked List
+class Solution {
+public:
+    void flatten(TreeNode* root){
+    
+    if(root == NULL)
+    return;
+
+    TreeNode* head = root;
+    head = flatten(root->left);
+    root->left = NULL;
+
+    while(temp && temp->next){
+        temp = temp->next;
+    }
+
+    temp->next = root;
+    root->right = flatten(root->right);
+
+    return head;
+    }
+};
+
+
+
+
+
+
+//extra space
 class Solution {
 public:
     void solve(TreeNode* root, vector<int>& store){
