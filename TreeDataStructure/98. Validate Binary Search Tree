@@ -1,5 +1,41 @@
 //98. Validate Binary Search Tree
 
+//using inorder trversal
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+     
+    stack<TreeNode*> st;
+    TreeNode* curr = root;
+
+    long prev = LONG_MIN;
+
+    while(curr != NULL || !st.empty()){
+        while(curr != NULL){
+          st.push(curr);
+          curr = curr->left;
+        }
+
+        curr = st.top();
+        st.pop();
+
+        if(curr->val <= prev)
+        return false;
+
+        prev = curr->val;
+
+        curr = curr->right;
+    } 
+       return true;
+    }
+};
+
+
+
+
+
+
+//optimal solution
 class Solution {
 public:
     bool solve(TreeNode* root, long min, long max){
