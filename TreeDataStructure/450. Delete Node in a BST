@@ -1,0 +1,53 @@
+//450. Delete Node in a BST
+
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key){
+        if(root == NULL)
+        return NULL;
+
+        TreeNode* curr = root;
+        if(key < curr->val){
+        curr->left = deleteNode(curr->left, key);
+        }
+
+        else if(key > curr->val){
+        curr->right = deleteNode(curr->right, key);
+        }
+        
+        
+        else{
+            //root left and right NULL
+            if(root->left == NULL && root->right == NULL){
+                return NULL;
+            }
+            
+            //root left NULL
+            if(root->left == NULL){
+                return root->right;
+            }
+            
+            //root right NULL
+            else if(root->right == NULL){
+                return root->left;
+            }
+            else{
+                //2 childs
+                //findPredecessor
+                TreeNode* node = findPredecessor(root->left);
+                //shift the value
+                root->val = node->val;
+                //delete the node val
+                curr->left = deleteNode(curr->left, node->val);
+            }
+        }
+        return root;
+    }
+
+     TreeNode* findPredecessor(TreeNode* node){
+        while(node->right != NULL){
+            node = node->right;
+        }
+        return node;
+    }
+};
