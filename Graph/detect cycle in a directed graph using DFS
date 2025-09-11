@@ -36,3 +36,97 @@ class Solution {
         return false; 
     } 
 };
+
+
+//expnation of the code
+bool isCyclicUtil(vector<int> adj[], int u, vector<bool>& visited, vector<bool>& inRecursion) {
+        
+    visited[u] = true;        // (1)
+    inRecursion[u] = true;    // (2)
+        
+    for(int v : adj[u]) {     // (3)
+        if(!visited[v] && isCyclicUtil(adj, v, visited, inRecursion))   // (4)
+            return true;      // (5)
+            
+        else if(inRecursion[v])   // (6)
+            return true;      // (7)
+    }
+        
+    inRecursion[u] = false;   // (8)
+    return false;             // (9)
+}
+
+
+
+🔹 Example Graph
+Let’s take a directed graph with a cycle:
+
+0 → 1
+1 → 2
+2 → 0   (cycle here)
+
+Adjacency List:
+0: [1]
+1: [2]
+2: [0]
+
+🔹 Step-by-Step Execution (Dry Run)
+//step = 1
+Call: isCyclicUtil(adj, 0, visited, inRecursion)
+Line (1): visited[0] = true;
+→ Mark 0 as visited.
+visited = [true, false, false]
+
+Line (2): inRecursion[0] = true;
+→ Mark 0 as part of the current recursion path.
+inRecursion = [true, false, false]
+
+Line (3): Loop over neighbors of 0.
+→ Neighbor = 1.
+
+Neighbor 1 (from 0 → 1)
+Line (4): !visited[1] is true, so call isCyclicUtil(adj, 1, ...).
+
+
+
+//step = 2
+Call: isCyclicUtil(adj, 1, visited, inRecursion)
+Line (1): visited[1] = true;
+visited = [true, true, false]
+
+Line (2): inRecursion[1] = true;
+inRecursion = [true, true, false]
+
+Line (3): Loop over neighbors of 1.
+→ Neighbor = 2.
+
+Neighbor 2 (from 1 → 2)
+
+Line (4): !visited[2] is true, so call isCyclicUtil(adj, 2, ...).
+
+
+
+//step = 3
+Call: isCyclicUtil(adj, 2, visited, inRecursion)
+
+Line (1): visited[2] = true;
+visited = [true, true, true]
+
+Line (2): inRecursion[2] = true;
+inRecursion = [true, true, true]
+
+Line (3): Loop over neighbors of 2.
+→ Neighbor = 0.
+
+Neighbor 0 (from 2 → 0)
+
+Line (4): !visited[0] is false (since 0 is already visited). Skip this.
+
+Line (6): else if(inRecursion[0]) → true (because 0 is still in recursion stack).
+
+👉 Cycle detected! Return true.
+🔹 Flow of Return
+From 2 → 0, return true.
+Bubble up to 1, return true.
+Bubble up to 0, return true.
+Final answer: Cycle exists.
