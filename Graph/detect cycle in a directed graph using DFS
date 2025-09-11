@@ -1,0 +1,38 @@
+//detect cycle in a directed graph using DFS
+
+class Solution { 
+  public: 
+    // Helper function to check cycle in directed graph 
+    bool isCyclicUtil(vector<int> adj[], int u, vector<bool>& visited, vector<bool>& inRecursion) { 
+        visited[u] = true; 
+        inRecursion[u] = true; 
+
+        for(int v : adj[u]) { 
+            // If v is not visited, recurse 
+            if(!visited[v] && isCyclicUtil(adj, v, visited, inRecursion)) 
+                return true; 
+
+            // If v is in current recursion stack → cycle found 
+            else if(inRecursion[v]) 
+                return true; 
+        } 
+
+        inRecursion[u] = false; // backtrack 
+        return false; 
+    } 
+
+    // Main function 
+    bool isCyclic(int V, vector<int> adj[]) { 
+        vector<bool> visited(V, false); 
+        vector<bool> inRecursion(V, false); 
+
+        // Check for cycle in every component 
+        for(int i = 0; i < V; i++) { 
+            if(!visited[i]) { 
+                if(isCyclicUtil(adj, i, visited, inRecursion)) 
+                    return true; 
+            } 
+        } 
+        return false; 
+    } 
+};
