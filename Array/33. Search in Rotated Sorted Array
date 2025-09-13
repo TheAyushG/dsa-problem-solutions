@@ -1,5 +1,8 @@
 //33. Search in Rotated Sorted Array
 
+time complexity O(log n)
+it is better then O(n)
+
 class Solution {
 public:
     int findPivot(vector<int>&nums, int n){
