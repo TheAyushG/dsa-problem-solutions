@@ -1,6 +1,7 @@
+
 class Solution {
 public:
-    unordered_set<string> exactWords;          // stores original words
+    unordered_set<string> exactWords;          // stores original word
     unordered_map<string, string> caseMap;     // lowercase : original word
     unordered_map<string, string> vowelMap;    // masked vowels : original word
     
