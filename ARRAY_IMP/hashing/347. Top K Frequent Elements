@@ -1,0 +1,30 @@
+//347. Top K Frequent Elements
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        
+        unordered_map<int,int> map;
+        int n = nums.size();
+        int freq = 0;
+
+        for(int i=0; i<n; i++){
+            int value = nums[i];
+            map[value]++;
+        }
+        
+        vector<pair<int,int>> temp;
+        for(auto it : map){
+            temp.push_back({it.second, it.first});
+        }
+
+        sort(temp.begin(), temp.end(), greater<pair<int,int>>());
+
+        vector<int> ans;
+
+        for(int i=0; i<k; i++){
+            ans.push_back(temp[i].second);
+        }
+        return ans;
+    }
+};
