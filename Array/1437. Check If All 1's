@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool kLengthApart(vector<int>& nums, int k) {
+        vector<int> pos;
+        for (int j = 0; j < nums.size(); ++j) {
+            if (nums[j] == 1) {
+                pos.push_back(j);
+            }
+        }
+
+        if(pos.size() == 0){
+            return 1;
+        }
+
+        for (int j = 0; j < pos.size() - 1; ++j) {
+            if ((pos[j + 1] - pos[j] - 1) < k) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
