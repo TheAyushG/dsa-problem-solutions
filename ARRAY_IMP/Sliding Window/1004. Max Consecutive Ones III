@@ -1,0 +1,30 @@
+Complexity	Value
+Time	O(n)
+Space	O(1)
+
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+
+    //[0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]
+    int n = nums.size();
+    int onesLength = 0;
+    int start = 0;
+    int zeroCount = 0;
+
+    for(int end=0; end<n; end++){
+        if(nums[end] == 0)
+            zeroCount++;
+        
+
+       while(zeroCount > k){
+        if(nums[start] == 0)
+            zeroCount--;
+        start++;
+        
+       }
+       onesLength = max(onesLength, end - start + 1);
+    }
+       return onesLength;
+    }
+};
