@@ -1,3 +1,35 @@
+//Approch-2 (Optimal Solution)
+
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums) {
+
+    int n = nums.size();
+    int start = 0;
+    int zeroCount = 0;
+    int maxLength = 0;
+
+    for(int end=0; end<n; end++){
+        if(nums[end] == 0)
+        zeroCount++;
+
+        while(zeroCount > 1){
+            if(nums[start] == 0)
+            zeroCount--;
+        start++;
+        }
+
+    maxLength = max(maxLength, end-start);
+    }
+
+    return maxLength;
+
+    }
+};
+
+
+
+
 //Approach-1 (Simple Brute Force) - T.C : O(n^2)
 Time Limit Exceeded, this solution is not excepted by Leetcode but it is the brute force
 
