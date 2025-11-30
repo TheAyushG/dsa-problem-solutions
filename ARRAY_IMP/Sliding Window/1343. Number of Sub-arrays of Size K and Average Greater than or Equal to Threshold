@@ -1,5 +1,39 @@
 //1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr, int k, int threshold) {
 
+        int n = arr.size();
+        int k_sum = 0;
+        int count = 0;
+
+        int i=0;
+        int j=0;
+
+        while(j<n){
+            k_sum += arr[j];
+
+            while(j-i+1 == k){
+                if((k_sum / k) >= threshold){
+                count++;
+                }
+            
+            k_sum -= arr[i];
+            i++;
+            }
+
+            j++;
+        }
+
+        return count;
+    }
+};
+
+
+
+
+
+//1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
 class Solution {
 public:
     int numOfSubarrays(vector<int>& arr, int k, int threshold) {
