@@ -1,0 +1,29 @@
+
+
+
+
+// this method is not sliding window, it using prefix sum and hash map
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+
+        int n = nums.size();
+        unordered_map<int,int> mp;
+
+        int result = 0;
+        int currSum = 0;
+        mp[0] = 1;
+        
+        for(int i=0; i<n; i++){
+            currSum += nums[i];
+            int remaining_sum = currSum - goal;
+
+            if(mp.find(remaining_sum) != mp.end()){
+                result += mp[remaining_sum];
+            }
+            mp[currSum]++;
+        }
+
+        return result;
+    }
+};
