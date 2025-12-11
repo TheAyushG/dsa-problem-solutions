@@ -1,0 +1,33 @@
+//3477. Fruits Into Baskets II
+
+class Solution {
+public:
+    int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
+
+        int n = fruits.size();
+        int m = baskets.size();
+
+        int count = 0;
+        
+        int j=0;
+        
+
+        while(j<n){
+            int i=0;
+            while(i<m && fruits[j] > baskets[i]){
+                i++;
+            }
+
+                if(i == m){
+                count++;
+                }
+
+               else{
+                baskets[i] = -1;
+               } 
+
+            j++;
+        }
+        return count;
+    }
+};
