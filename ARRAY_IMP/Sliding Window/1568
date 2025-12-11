@@ -1,4 +1,0 @@
-right: nums = [1,1,4,2,3], x = 5
-Output: 2
-Explanation:
-Remove 2 and 3 from the right → sum = 5 → operations = 2
