@@ -1,0 +1,53 @@
+//Approach - 1
+Time - O(n);
+space - O(1);
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+       
+       int n = numbers.size();
+       int i=0;
+       int j=n-1;
+
+       while(i<j){
+        if(numbers[i] + numbers[j] < target){
+            i++;
+        }
+
+        else if(numbers[i] + numbers[j] > target){
+            j--;
+        }
+
+        else{
+            return {i+1, j+1};
+        }
+       }
+
+       return {};  
+    }
+};
+
+
+//Approach - 2
+Time - O(n);
+space - O(n);
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+       
+       int n = numbers.size();
+       unordered_map<int,int> map;
+
+       for(int i=0; i<n; i++){
+       int ans = target - numbers[i];
+
+       if(map.find(ans) != map.end()){
+           return {map[ans]+1,i+1};
+        }
+        map[numbers[i]] = i;
+      }
+      return {};
+    }
+};
