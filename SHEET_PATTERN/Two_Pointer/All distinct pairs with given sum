@@ -1,0 +1,41 @@
+
+// GFG All distinct pairs with given sum, 
+//uniqe pairs for two sum
+
+class Solution {
+  public:
+    vector<vector<int>> distinctPairs(vector<int> &arr, int target) {
+        // Code here
+        int n = arr.size();
+        int i=0;
+        int j=n-1;
+        
+        vector<vector<int>>result;
+        
+        sort(arr.begin(), arr.end());
+        
+        while(i<j){
+            if(arr[i] + arr[j] > target){
+                j--;
+            }
+            else if(arr[i] + arr[j] < target){
+                i++;
+            }
+            
+            else  {
+                 result.push_back({arr[i], arr[j]});
+                 i++;
+                 j--;
+                 
+                while(arr[i] == arr[i-1]){
+                    i++;
+                }
+                 while(arr[j] == arr[j+1]){
+                    j--;
+                     
+                    }
+                }
+            }
+        return result;
+        }
+};
