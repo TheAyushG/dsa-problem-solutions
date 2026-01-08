@@ -1,38 +1,104 @@
+Time - O(n+m)
+
 class Solution {
   public:
     vector<int> findUnion(vector<int> &a, vector<int> &b) {
+        // code here
+        
         int n = a.size();
         int m = b.size();
         
-        vector<int> arr;
+        int i=0;
+        int j=0;
         
+        vector<int> result;
+        
+        while(i<n && j<m){
+            if(a[i] < b[j]){
+                if(result.empty() || result.back() != a[i]){
+                    result.push_back(a[i]);
+                }
+                i++;
+            }
+            
+            else if(a[i] > b[j]){
+                if(result.empty() || result.back() != b[j]){
+                    result.push_back(b[j]);
+                }
+                j++;
+            }
+            
+            else if(a[i] == b[j]){
+                if(result.empty() || result.back() != a[i]){
+                    result.push_back(a[i]);
+                }
+                
+                i++;
+                j++;
+            }
+        }
+        
+        while(i<n){
+            if(result.empty() || result.back() != a[i]){
+                result.push_back(a[i]);
+            }
+            i++;
+        }
+        
+        while(j<m){
+            if(result.empty() || result.back() != b[j]){
+                result.push_back(b[j]);
+            }
+            j++;
+        }
+        return result;
+    }
+};
+
+
+
+
+----------------------------------------------------------------------
+
+class Solution {
+public:
+    vector<int> findUnion(vector<int> &a, vector<int> &b) {
+        // code here
+        int n = a.size();
+        int m = b.size();
+
+        vector<int> arr;
+
         int i = 0;
         int j = 0;
-        
-        while(i < n){
+
+        while (i < n){
             arr.push_back(a[i]);
             i++;
         }
         
-        while(j < m){
+        
+        while (j < m){
             arr.push_back(b[j]);
             j++;
-        }
-        
+        }    
+
         sort(arr.begin(), arr.end());
-        
+
         vector<int> result;
         
         if(arr.size() == 0) return result;
-        
+
         result.push_back(arr[0]);
-        
-        for(int k = 1; k < arr.size(); k++){
-            if(arr[k] != arr[k-1]){
+        int k = 1;
+
+        while (k < arr.size()) {
+            if (arr[k] != arr[k - 1]) {
                 result.push_back(arr[k]);
             }
+            k++;
         }
-        
+
         return result;
     }
 };
