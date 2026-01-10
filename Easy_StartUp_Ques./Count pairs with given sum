@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int countPairs(vector<int> &arr, int target) {
+
+        unordered_map<int, int> freq;
+        int count = 0;
+
+        for (int i = 0; i < arr.size(); i++) {
+
+            int need = target - arr[i];
+
+            if (freq.find(need) != freq.end()) {
+                count = count + freq[need];
+            }
+
+            freq[arr[i]] = freq[arr[i]] + 1;
+        }
+
+        return count;
+    }
+};
