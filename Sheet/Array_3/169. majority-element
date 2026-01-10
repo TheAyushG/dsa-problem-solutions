@@ -1,0 +1,31 @@
+169. majority-element
+
+Time complexity = n (log n) + O(n)
+Space complexity  = O(n) 
+-------------------------------------------------------------
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+
+        //total time complexity is = n (log n) + O(n)
+        // Space = O(n) 
+
+        int n = nums.size();
+        // log n for search/ or/ insert and n is the number of 
+        // elements in array that's why it is n log n
+
+        map<int,int>map; // n log n
+        for(int i=0; i<n; i++){
+            map[nums[i]]++;
+        }
+
+        for(auto &it: map){ // O(n) for the treverse on the map
+            if(it.second > n/2){
+                return it.first;
+            }
+        }
+
+        return -1;
+    }
+};
