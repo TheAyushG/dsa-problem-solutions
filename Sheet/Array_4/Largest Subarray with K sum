@@ -1,3 +1,53 @@
+**we can use this below solution code only when question array all elements are positive, we can’t use this 
+code for nagative and positive mix numbers, because expending arr can decrease the sum and shrinking array 
+can increase the sum, but for this case of question map solution is sufficent.**
+-----------------------------------------------------------------------------------------------------------
+
+Time - O(2n)
+Space - O(1)
+-----------------------------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    int longestSubarray(vector<int>& arr, int k) {
+        
+        int n = arr.size();
+        
+        if(n == 0) return 0;
+        
+        int left = 0;
+        int right = 0;
+        
+        long long sum = 0;
+        int maxLen = 0;
+        
+        while(right < n){
+            
+            sum += arr[right];
+            
+            while(left <= right && sum > k){
+                sum -= arr[left];
+                left++;
+            }
+            
+            if(sum == k){
+                maxLen = max(maxLen, right - left + 1);
+            }
+            
+            right++;
+        }
+        
+        return maxLen;
+    }
+};
+
+
+
+---------------------------------------------------------------------------------
+//**Using map**
+//**Time - O(n log n)**
+//**Space - O(n**)
+
 class Solution {
 public:
     int longestSubarray(vector<int>& arr, int k) {
