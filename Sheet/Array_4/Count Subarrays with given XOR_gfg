@@ -1,0 +1,28 @@
+// Time - n (log n)
+//space - o(n)
+-----------------------------------------------
+
+class Solution {
+  public:
+    long subarrayXor(vector<int> &arr, int k) {
+        
+        int n = arr.size();
+        
+        int xr = 0;
+        map<int,int>map;
+        map[xr]++;
+        int count = 0;
+        
+        for(int i=0; i<n; i++){
+            xr = xr ^ arr[i];
+            int x = xr ^ k;
+            if(map.find(x) != map.end()){
+                count += map[x];
+            }
+            
+            map[xr]++;
+        }
+        
+        return count;
+    }
+};
