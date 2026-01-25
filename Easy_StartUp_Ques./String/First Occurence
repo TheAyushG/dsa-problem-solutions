@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int firstOccurence(string& txt, string& pat) {
+        int n = txt.size();
+        int m = pat.size();
+
+        // Loop where pattern can start
+        for (int i = 0; i <= n - m; i++) {
+
+            int j = 0;
+
+            // Match characters one by one
+            while (j < m && txt[i + j] == pat[j]) {
+                j++;
+            }
+
+            // If full pattern matched
+            if (j == m) {
+                return i;   // first occurrence found
+            }
+        }
+
+        // Pattern not found
+        return -1;
+    }
+};
