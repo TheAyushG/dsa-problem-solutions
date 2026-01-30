@@ -1,0 +1,39 @@
+class Solution {
+public:
+    void removeLoop(Node* head) {
+        if(head == NULL || head->next == NULL)
+            return;
+
+        Node* slow = head;
+        Node* fast = head;
+
+        // Step 1: Detect loop
+        while(fast != NULL && fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if(slow == fast)
+                break;
+        }
+
+        // No loop
+        if(slow != fast)
+            return;
+
+        // Step 2: Find start of loop
+        slow = head;
+        while(slow != fast){
+            slow = slow->next;
+            fast = fast->next;
+        }
+
+        // Step 3: Find last node of loop
+        Node* temp = slow;
+        while(temp->next != slow){
+            temp = temp->next;
+        }
+
+        // Step 4: Remove loop
+        temp->next = NULL;
+    }
+};
