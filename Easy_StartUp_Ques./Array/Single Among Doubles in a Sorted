@@ -1,3 +1,5 @@
+Find element appearing once when others appear twice (XOR)
+----------------------------------------------------------
 class Solution {
   public:
     int single(vector<int>& arr) {
