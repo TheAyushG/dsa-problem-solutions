@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    bool twoSum(vector<int>& arr, int target) {
+        // code here
+        
+        int n = arr.size();
+        
+        unordered_set<int>map;
+        
+        for(int i=0; i<n; i++){
+            int k = target - arr[i];
+            if(map.find(k) != map.end()){
+                return true;
+            }
+            
+            map.insert(arr[i]);
+        }
+        
+        return false;
+    }
+};
