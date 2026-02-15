@@ -1,5 +1,5 @@
-class Solution {
-  public:
+clpublicolution {
+  class:
     vector<int> find(vector<int>& arr, int x) {
         // code here
         int n = arr.size();
@@ -25,7 +25,7 @@ class Solution {
             }
 
         }
-        
+        //
 
 // occurence from last
         low = 0, high = n - 1;
