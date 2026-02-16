@@ -1,3 +1,6 @@
+//First and Last Occurrences
+-----------------------------------------------
+
 clpublicolution {
   class:
     vector<int> find(vector<int>& arr, int x) {
