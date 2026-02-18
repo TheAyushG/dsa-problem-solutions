@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    int nthFibonacci(int n) {
+        // code here
+
+        if(n==0)
+            return 0;
+        
+        if(n==1)
+            return 1;
+        
+        int I=0;
+        int J=1;
+        int ans;
+        
+        for(int i=2; i<=n; i++){
+            ans = I+J;
+            I=J;
+            J=ans;
+        }
+        
+        return J;
+    }
+};
