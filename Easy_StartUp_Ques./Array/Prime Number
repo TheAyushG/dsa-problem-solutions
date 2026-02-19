@@ -1,3 +1,5 @@
+prime number
+-----------------------------------
 class Solution {
   public:
     bool isPrime(int n) {
