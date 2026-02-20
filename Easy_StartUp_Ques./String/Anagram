@@ -1,5 +1,5 @@
 class Solution {
-  public:
+  publicblic:
     bool areAnagrams(string& s1, string& s2) {
         // code here
         
