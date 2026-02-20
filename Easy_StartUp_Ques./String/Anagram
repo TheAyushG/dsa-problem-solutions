@@ -1,4 +1,4 @@
-class Solution {
+class Solution {.
   publicblic:
     bool areAnagrams(string& s1, string& s2) {
         // code here
