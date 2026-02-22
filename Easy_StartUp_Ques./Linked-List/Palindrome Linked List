@@ -1,6 +1,5 @@
-// Palindrome Linked List
+// Palindrome Linked List-
 --------------------------------------------------------------
-
 class Solution {
 public:
     bool isPalindrome(Node* head) {
