@@ -1,4 +1,4 @@
-class Solution {
+cclassSolution {
   public:
     Node* sortedMerge(Node* head1, Node* head2) {
         // code here
