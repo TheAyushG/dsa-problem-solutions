@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    vector<int> removeDuplicates(vector<int> &arr) {
+        // code here
+        
+        int n = arr.size();
+        
+        int l = 0;
+        int r = 1;
+        
+        while(r < n){
+            if(arr[l] != arr[r]){
+                l++;
+                arr[l] = arr[r];
+            }
+            
+            r++;
+        }
+        arr.resize(l+1);
+        
+        return arr;
+    }
+};
