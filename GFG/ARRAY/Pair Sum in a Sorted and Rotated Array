@@ -1,0 +1,39 @@
+class Solution {
+  public:
+    bool pairInSortedRotated(vector<int>& arr, int target) {
+        
+        int n = arr.size();
+        
+        // Step 1: Find pivot
+        int pivot = -1;
+        for(int i = 0; i < n - 1; i++){
+            if(arr[i] > arr[i+1]){
+                pivot = i;
+                break;
+            }
+        }
+        
+        // If array not rotated
+        if(pivot == -1)
+            pivot = n - 1;
+        
+        // Step 2: Two pointers
+        int left = (pivot + 1) % n;
+        int right = pivot;
+        
+        // Step 3: Circular two pointer
+        while(left != right){
+            
+            int sum = arr[left] + arr[right];
+            
+            if(sum == target)
+                return true;
+            else if(sum < target)
+                left = (left + 1) % n;
+            else
+                right = (right - 1 + n) % n;
+        }
+        
+        return false;
+    }
+};
