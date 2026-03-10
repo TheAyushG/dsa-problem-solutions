@@ -1,3 +1,5 @@
+Stock Buy and Sell – Multiple Transaction Allowed
+-------------------------------------------------
 class Solution {
   public:
     int maxProfit(vector<int> &prices) {
