@@ -1,3 +1,5 @@
+Max sum in the configuration.cpp
+--------------------------------
 class Solution {
   public:
     int maxSum(vector<int> &arr) {
