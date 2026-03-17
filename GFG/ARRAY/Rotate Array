@@ -1,3 +1,5 @@
+Rotate Array
+---------------------------------------------
 class Solution {
 public:
     void rotateArr(vector<int>& arr, int d) {
