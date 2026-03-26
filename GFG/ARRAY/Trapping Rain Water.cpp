@@ -1,3 +1,5 @@
+Trapping Rain Water.cpp
+----------------------------------------
 class Solution {
   public:
     int maxWater(vector<int> &arr) {
