@@ -1,35 +1,79 @@
 Trapping Rain Water.cpp
-----------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Time: O(n) ✅
+Space: O(1) ✅
+
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        
+        int n = height.size();
+        int leftMax = 0;
+        int rightMax = 0;
+        int left = 0;
+        int right = n-1;
+        int water = 0;
+
+        while(left <= right){
+
+            if(height[left] <= height[right]){
+
+                if(height[left] >= leftMax){
+                    leftMax = height[left];
+                }
+
+                else{
+                    water +=  leftMax - height[left];
+                }
+
+                left++;
+            }
+
+            else{
+                if(height[right] >= rightMax){
+                    rightMax = height[right];
+                }
+
+                else{
+                    water += rightMax - height[right];
+                }
+                right--;
+            }
+        }
+
+        return water;
+    }
+};
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Time: O(n) ✅
+Space: O(n) ❌
+  
 class Solution {
   public:
     int maxWater(vector<int> &arr) {
         
         int n = arr.size();
         
-        int left = 0, right = n - 1;
-        int leftMax = 0, rightMax = 0;
+        vector<int> leftMax(n), rightMax(n);
+        
+        // left max
+        leftMax[0] = arr[0];
+        for(int i = 1; i < n; i++){
+            leftMax[i] = max(leftMax[i-1], arr[i]);
+        }
+        
+        // right max
+        rightMax[n-1] = arr[n-1];
+        for(int i = n-2; i >= 0; i--){
+            rightMax[i] = max(rightMax[i+1], arr[i]);
+        }
+        
         int water = 0;
         
-        while(left <= right){
-            
-            if(arr[left] <= arr[right]){
-                
-                if(arr[left] >= leftMax)
-                    leftMax = arr[left];
-                else
-                    water += leftMax - arr[left];
-                
-                left++;
-            }
-            else{
-                
-                if(arr[right] >= rightMax)
-                    rightMax = arr[right];
-                else
-                    water += rightMax - arr[right];
-                
-                right--;
-            }
+        for(int i = 0; i < n; i++){
+            water += min(leftMax[i], rightMax[i]) - arr[i];
         }
         
         return water;
@@ -38,9 +82,7 @@ class Solution {
 
 
 
-
-
-----------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 class Solution {
   public:
@@ -86,3 +128,5 @@ class Solution {
         return sum;
     }
 };
+
+----------------------------------------------------------------------------------------------------------------
