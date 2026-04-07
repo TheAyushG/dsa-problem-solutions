@@ -1,0 +1,69 @@
+----------------------------------------------
+//Time - O(n)
+//Space - O(1)
+----------------------------------------------
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+
+        int n = nums.size();
+        int prevCount = 0;
+        int oddCount = 0;
+        int result = 0;
+
+        int i=0;
+        int j=0;
+
+        while(j<n){
+            if(nums[j] % 2 != 0){
+                oddCount++;
+                prevCount = 0;
+            }
+
+            while(oddCount == k){
+                prevCount++;
+
+                if(nums[i] % 2 == 1){
+                    oddCount--;
+                }
+
+                i++;
+            }
+
+            result += prevCount;
+            j++;
+        }
+
+        return result;
+    }
+};
+
+
+
+----------------------------------------------------
+//Time - O(n)
+//Space - O(n)
+----------------------------------------------------
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+
+        unordered_map<int,int> mp;
+        int n = nums.size();
+
+        int result = 0;
+        int oddCount = 0;
+        mp[oddCount] = 1;
+
+        for(int i=0; i<n; i++){
+            oddCount += (nums[i] % 2);
+
+            if(mp.count(oddCount - k)){
+                result += mp[oddCount-k];
+            }
+            mp[oddCount]++;
+        }
+
+        return result;
+    }
+};
