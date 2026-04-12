@@ -11,9 +11,9 @@ public:
                 if(matrix[i][j] == 0){
                     zeros.push_back({i,j});
                 }
-            }
+            } 
         }
-
+.
         for(auto &p : zeros){
             int row = p.first;
             int col = p.second;
