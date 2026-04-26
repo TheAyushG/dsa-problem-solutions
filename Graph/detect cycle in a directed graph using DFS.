@@ -1,7 +1,7 @@
 //detect cycle in a directed graph using DFS
 
 class Solution { 
-  public: 
+  public:.
     // Helper function to check cycle in directed graph 
     bool isCyclicUtil(vector<int> adj[], int u, vector<bool>& visited, vector<bool>& inRecursion) { 
         visited[u] = true; 
