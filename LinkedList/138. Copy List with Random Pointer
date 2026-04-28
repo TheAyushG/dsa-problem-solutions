@@ -1,7 +1,7 @@
 138. Copy List with Random Pointer
 Time Complexity: O(n)
 Space Complexity: O(1)
-//but we can say that may be space complexity is O(n)
+//but we can say that may be space complexity is O(n).
 
 class Solution {
 public:
