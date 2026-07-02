@@ -1,5 +1,6 @@
+---------------------
 //394. Decode String
-
+---------------------
 class Solution {
 public:
     string decodeString(string s) {
