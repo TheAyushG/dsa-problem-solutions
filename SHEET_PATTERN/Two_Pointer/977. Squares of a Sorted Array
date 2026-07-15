@@ -30,7 +30,7 @@ public:
 
 
 
-// same method as above
+//// same method as above
 
 class Solution {
 public:
